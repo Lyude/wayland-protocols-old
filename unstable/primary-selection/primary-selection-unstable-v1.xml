@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<protocol name="primary_selection">
+  <copyright>
+    Copyright © 2015 Red Hat
+
+    Permission is hereby granted, free of charge, to any person obtaining a
+    copy of this software and associated documentation files (the "Software"),
+    to deal in the Software without restriction, including without limitation
+    the rights to use, copy, modify, merge, publish, distribute, sublicense,
+    and/or sell copies of the Software, and to permit persons to whom the
+    Software is furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice (including the next
+    paragraph) shall be included in all copies or substantial portions of the
+    Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
+    THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+    DEALINGS IN THE SOFTWARE.
+  </copyright>
+
+  <interface name="zwp_primary_selection_device_manager_v1" version="1">
+    <description summary="X primary selection emulation">
+      Provides the ability to have a primary selection buffer to match that of
+      the X server. This allows users to select bodies of text, and then paste
+      them in another buffer without having to do the initial paste.
+
+      The primary buffer manager is in charge of handling client's requests to
+      indicate that text has been selection, along with handling client's access
+      to selected text.
+    </description>
+
+    <request name="get_primary_selection_device">
+      <description summary="Primary selection device manager">
+        Singleton global object that manages the zwp_primary_selection_device_v1
+        objects for each wl_seat.
+      </description>
+      <arg name="id" type="new_id" interface="zwp_primary_selection_device_v1"/>
+      <arg name="seat" type="object" interface="wl_seat"/>
+    </request>
+  </interface>
+
+  <interface name="zwp_primary_selection_device_v1" version="1">
+    <request name="selection_set">
+      <description summary="set the primary selection">
+        Set the current contents of the primary selection buffer. This clears
+        anything which was previously held in the primary selection buffer.
+
+        This request can only be used while the window is focused.
+      </description>
+      <arg name="source" type="object" interface="wl_data_source"
+        summary="The wl_data_source containing the data to set the contents of the primary selection buffer to"/>
+    </request>
+
+    <event name="selection_changed">
+      <description summary="another client changed the contents of the primary selection buffer">
+        Sent when another client has changed the contents of the primary
+        selection to a client that previously owned the contents of the primary
+        selection.
+      </description>
+    </event>
+
+    <event name="selection_offer">
+      <description summary="primary selection buffer is ready for reading">
+        Sent when the client has permission to read from the primary selection
+        buffer.
+
+        This event is sent whenever the client receives a middle click, and will
+        be received by the client before the actual middle click event. While
+        the compositor is free to bind this event to another input event (such
+        as a keyboard shortcut), the client should always treat pastes from the
+        primary selection as middle clicks. This is to ensure the behavior is
+        identical to that of primary selection pasting in X.
+
+        It is up to the client to decide whether or not it is appropriate to
+        read from the primary buffer and paste it's contents.
+      </description>
+      <arg name="offer" type="new_id" interface="wl_data_offer"
+        summary="The wl_data_offer containing the contents of the primary selection"/>
+    </event>
+  </interface>
+</protocol>
