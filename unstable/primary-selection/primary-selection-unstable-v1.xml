@@ -64,14 +64,6 @@
         summary="The zwp_primary_selection_source_v1 containing the data to set the contents of the primary selection buffer to"/>
     </request>
 
-    <event name="selection_changed">
-      <description summary="another client changed the contents of the primary selection buffer">
-        Sent when another client has changed the contents of the primary
-        selection to a client that previously owned the contents of the primary
-        selection.
-      </description>
-    </event>
-
     <event name="selection_offer">
       <description summary="primary selection buffer is ready for reading">
         Sent when the client has permission to read from the primary selection
