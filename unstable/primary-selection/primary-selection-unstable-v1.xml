@@ -50,6 +50,12 @@
       <arg name="id" type="new_id" interface="zwp_primary_selection_device_v1"/>
       <arg name="seat" type="object" interface="wl_seat"/>
     </request>
+
+    <request name="destroy">
+      <description summary="destroy the primary selection device manager">
+        Destroy the primary selection device manager.
+      </description>
+    </request>
   </interface>
 
   <interface name="zwp_primary_selection_device_v1" version="1">
@@ -80,6 +86,12 @@
       </description>
       <arg name="offer" type="new_id" interface="zwp_primary_selection_offer_v1"/>
     </event>
+
+    <request name="destroy">
+      <description summary="destroy the primary selection device">
+        Destroy the primary selection device.
+      </description>
+    </request>
   </interface>
 
   <interface name="zwp_primary_selection_offer_v1" version="1">
