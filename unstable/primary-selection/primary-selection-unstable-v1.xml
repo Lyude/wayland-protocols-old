@@ -60,8 +60,7 @@
 
         This request can only be used while the window is focused.
       </description>
-      <arg name="source" type="object" interface="zwp_primary_selection_source_v1"
-        summary="The zwp_primary_selection_source_v1 containing the data to set the contents of the primary selection buffer to"/>
+      <arg name="source" type="object" interface="zwp_primary_selection_source_v1">
     </request>
 
     <event name="selection_offer">
@@ -79,8 +78,7 @@
         It is up to the client to decide whether or not it is appropriate to
         read from the primary buffer and paste it's contents.
       </description>
-      <arg name="offer" type="new_id" interface="zwp_primary_selection_offer_v1"
-        summary="The zwp_primary_selection_offer_v1 containing the contents of the primary selection"/>
+      <arg name="offer" type="new_id" interface="zwp_primary_selection_offer_v1">
     </event>
   </interface>
 
