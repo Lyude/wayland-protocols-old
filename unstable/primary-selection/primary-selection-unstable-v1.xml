@@ -51,7 +51,7 @@
       <arg name="seat" type="object" interface="wl_seat"/>
     </request>
 
-    <request name="destroy">
+    <request name="destroy" type="destructor">
       <description summary="destroy the primary selection device manager">
         Destroy the primary selection device manager.
       </description>
@@ -87,7 +87,7 @@
       <arg name="offer" type="new_id" interface="zwp_primary_selection_offer_v1"/>
     </event>
 
-    <request name="destroy">
+    <request name="destroy" type="destructor">
       <description summary="destroy the primary selection device">
         Destroy the primary selection device.
       </description>
@@ -119,7 +119,7 @@
       <arg name="fd" type="fd"/>
     </request>
 
-    <request name="destroy">
+    <request name="destroy" type="destructor">
       <description summary="destroy the primary selection offer">
         Destroy the primary selection offer.
       </description>
@@ -151,7 +151,7 @@
       <arg name="mime_type" type="string"/>
     </request>
 
-    <request name="destroy">
+    <request name="destroy" type="destructor">
       <description summary="destroy the primary selection source">
         Destroy the primary selection source.
       </description>
